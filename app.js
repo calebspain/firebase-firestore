@@ -1,7 +1,6 @@
 const cafeList = document.querySelector('#cafe-list');
 const form = document.querySelector('#add-cafe-form');
 
-// create element and render cafe
 function renderCafe(doc) {
     let li = document.createElement('li');
     let name = document.createElement('span');
@@ -19,7 +18,6 @@ function renderCafe(doc) {
 
     cafeList.appendChild(li);
 
-    // deleting data
     cross.addEventListener('click', e => {
         e.stopPropagation();
         let attribute = e.target.parentElement.getAttribute('data-id').split('');
@@ -28,7 +26,6 @@ function renderCafe(doc) {
     });
 }
 
-// getting data
 // db.collection('cafes').orderBy('name').get()
 //     .then(querySnapshot => {
 //         querySnapshot.forEach(doc => {
@@ -36,7 +33,6 @@ function renderCafe(doc) {
 //         });
 //     });
 
-// saving data
 form.addEventListener('submit', e => {
     e.preventDefault();
     db.collection('cafes').add({
@@ -47,7 +43,6 @@ form.addEventListener('submit', e => {
     form.city.value = '';
 });
 
-// real-time listener
 db.collection('cafes').orderBy('city').onSnapshot(snapshot => {
     let changes = snapshot.docChanges();
     changes.forEach(change => {
